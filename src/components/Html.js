@@ -7,9 +7,9 @@ const Html = ({ children, scripts }) => (
       <title>Server Side Rendered React App !!</title>
     </head>
     <body>
-      <div id="app /" dangerouslySetInnerHTML={{ __html: children }} />
+      <div id="root" dangerouslySetInnerHTML={{ __html: children }} />
       {scripts.map((item, index) => (
-        <scripts key="index" src={item} />
+        <scripts key={index} src={item} />
       ))}
     </body>
   </html>

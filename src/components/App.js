@@ -9,6 +9,7 @@ const App = ({ initialText }) => {
 
   return (
     <div>
+      <h1>Hello</h1>
       <p>{text}</p>
       <button onClick={handleCLick}>change text!</button>
     </div>
