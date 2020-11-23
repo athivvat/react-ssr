@@ -22,7 +22,7 @@ app.get("*", async (req, res) => {
   const store = createStore(reducer, initialState);
 
   const appMarkup = ReactDOMServer.renderToString(
-    <StaticRouter location="req.url" context={context}>
+    <StaticRouter location={req.url} context={context}>
       <Provider store={store}>
         <App />
       </Provider>
