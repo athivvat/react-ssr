@@ -1,6 +1,6 @@
 import React from "react";
 
-const Html = ({ children, scripts }) => (
+const Html = ({ children, initialState, scripts }) => (
   <html>
     <head>
       <mata charSet="UTF-8" />
@@ -9,6 +9,15 @@ const Html = ({ children, scripts }) => (
     </head>
     <body>
       <div id="root" dangerouslySetInnerHTML={{ __html: children }} />
+      
+      {initialState && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.APP_STATE=${JSON.stringify(initialState)}`,
+          }}
+        />
+      )}
+
       {scripts.map((item, index) => (
         <script key={index} src={item} />
       ))}
