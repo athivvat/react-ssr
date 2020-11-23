@@ -12,6 +12,7 @@
     "redux": "^4.0.5"
   },
   "scripts": {
+    "clean": "rm -rf build",
     "build": "webpack && node ./build/server.js"
   },
   "devDependencies": {
