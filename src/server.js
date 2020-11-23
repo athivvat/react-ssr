@@ -1,9 +1,10 @@
 import express from "express";
 import path from "path";
 import React from "react";
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import ReactDOMServer from "react-dom/server";
+import { StaticRouter } from "react-router";
 
 import Html from "./components/Html";
 import App from "./components/App";
@@ -16,14 +17,16 @@ app.use(express.static(path.join(__dirname)));
 app.get("*", async (req, res) => {
   const scripts = ["vendor.js", "client.js"];
 
-  const initialState = { initialText: "rendered on the server !!" }
-
-  const store = createStore(reducer, initialState)
+  const initialState = { initialText: "rendered on the server !!" };
+  const context = {};
+  const store = createStore(reducer, initialState);
 
   const appMarkup = ReactDOMServer.renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <StaticRouter location="req.url" context={context}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </StaticRouter>
   );
 
   const html = ReactDOMServer.renderToStaticMarkup(
