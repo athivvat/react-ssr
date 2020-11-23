@@ -1,22 +1,24 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { Route, Link, Switch } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
 
-const App = ({ initialText, changeText }) => {
-  return (
-    <div>
-      <h1>Hello</h1>
-      <p>{initialText}</p>
-      <button onClick={changeText}>change text!</button>
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+    </ul>
+    <hr />
+    <Switch>
+      <Route path="/about" component={About} />
+      <Route path="/" component={Home} />
+    </Switch>
+  </div>
+);
 
-const mapStateToProps = ({ initialText }) => ({
-  initialText,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeText: () => dispatch({ type: "CHANGE_TEXT" }),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
